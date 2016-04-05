@@ -1,6 +1,7 @@
 $headerFooter: #424242;
-$backgroundColor: #F5F5F5;
+$backgroundColor: #F5F5F5; //gray
 $showSelectionRed: #E64A19;
+$shadow: #888888;
 
 
 
@@ -14,6 +15,7 @@ body {
 
 .squares {
   background-color: $backgroundColor;
+  box-shadow: 5px 5px 15px $shadow;
 }
 
 footer {

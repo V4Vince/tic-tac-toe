@@ -1,7 +1,7 @@
 body {
   margin: 0 auto;
-  min-height: 1000px;
-
+  height: 100%;
+  padding-bottom: 0;
 }
 
 h3{
@@ -10,7 +10,9 @@ h3{
 .jumbotron {
   padding-top: 100px;
   padding-bottom: 100px;
+  margin: 0 auto;
 }
+
 /*
 .gameboard {
   margin: 0 auto;
@@ -28,7 +30,7 @@ h3{
 
 .squares {
   margin: 5px;
-  border: 2px solid black;
+  border: 1px solid black;
   border-radius: 100px;
   width: 100px;
   height:100px;
@@ -36,7 +38,7 @@ h3{
 
 footer {
   height: 100px;
-  margin-bottom: 0;
+  bottom: 0;
 }
 
 @media (max-width: 400px) {
