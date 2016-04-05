@@ -12,24 +12,27 @@ body {
   padding-top: 100px;
   padding-bottom: 100px;
 }
-
+/*
 .gameboard {
   margin: 0 auto;
+  max-width: 450px;
 }
-
+*/
 .top-row,
 .middle-row,
 .bottom-row {
-  max-width: 450px;
-  margin: auto;
+  margin: 0 auto;
+  display: block;
+  max-width: 400px;
 }
 
+
 .squares {
-  margin: 0 auto;
+  margin: 5px;
   border: 2px solid black;
-  background-color: #F5F5F5;
-  width: 150px;
-  height:150px;
+  border-radius: 100px;
+  width: 100px;
+  height:100px;
 }
 
 footer {
@@ -41,6 +44,11 @@ footer {
   .squares {
     width: 100px;
     height:100px;
+  }
+  .top-row,
+  .middle-row,
+  .bottom-row {
+    margin: 0 auto;
   }
 }
 /* make row funtions for squares in game board
