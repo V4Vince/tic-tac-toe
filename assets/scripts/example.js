@@ -4,7 +4,10 @@ let winCondition = [0, 1, 2], [3, 4, 5], [6, 7, 8],//rows
                    [0, 3, 6], [1, 4, 5], [2, 5, 8],//columns
                    [1, 5, 9], [3, 5, 7];//across
 */
-let gameBoard = [$("#one"), $("#two"), $("#three"), $("four"), $("four"), $("four"), $("four")]
+let gameBoard = [$("#one"), $("#two"), $("#three"),
+                 $("four"), $("five"), $("six"),
+                  $("seven"), $("eight"), $("nine")]
+
 let currentSquare;
 let turns = 0;
 let currentPlayer = null;
