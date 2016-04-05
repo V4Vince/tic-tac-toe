@@ -18,7 +18,7 @@ $( document ).ready(function() {
   });
 
     $('.gameboard').find('.squares').click(function(){
-    $(this).addClass('playerX');
+    $(this).text('X').addClass('playerX');
   });
 
 
