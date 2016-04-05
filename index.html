@@ -1,53 +1,73 @@
 <!DOCTYPE html>
 <html>
-    <head>
-      <title>Example</title>
+  <head>
+    <title>Example</title>
 
-      <script src="vendor.bundle.js" type="text/javascript" charset="utf-8" defer></script>
-      <script src="bundle.js" type="text/javascript" charset="utf-8" defer></script>
-    </head>
-    <!-- Button trigger modal ----------------------------------->
+    <script src="vendor.bundle.js" type="text/javascript" charset="utf-8" defer></script>
+    <script src="bundle.js" type="text/javascript" charset="utf-8" defer></script>
+  </head>
+  <!-- Button trigger modal ----------------------------------->
 
-    <body class="container-fluid">
+  <body>
 
-      <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-        Sign In
-      </button>
-
-      <h1>Tic-Tac-Toe!</h1>
-      <div class="container gameboard">
-
-        <div class="col-xs-4 col-md-4 gameboard squares"></div>
-        <div class="col-xs-4 col-md-4 gameboard squares"></div>
-        <div class="col-xs-4 col-md-4 gameboard squares"></div>
-        <div class="col-xs-4 col-md-4 gameboard squares"></div>
-        <div class="col-xs-4 col-md-4 gameboard squares"></div>
-        <div class="col-xs-4 col-md-4 gameboard squares"></div>
-        <div class="col-xs-4 col-md-4 gameboard squares"></div>
-        <div class="col-xs-4 col-md-4 gameboard squares"></div>
-        <div class="col-xs-4 col-md-4 gameboard squares"></div>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container ">
+        <!-- Button trigger modal ----------------------------------->
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+          Sign In
+        </button>
       </div>
+    </nav>
+    <div class="jumbotron">
+      <div class="container gameboard">
+        <div class="top-row">
+          <div class="col-xs-4 col-md-4 gameboard squares id="one""></div>
+          <div class="col-xs-4 col-md-4 gameboard squares id="two""></div>
+          <div class="col-xs-4 col-md-4 gameboard squares id="three""></div>
+        <div class="middle-row">
+          <div class="col-xs-4 col-md-4 gameboard squares id="four""></div>
+          <div class="col-xs-4 col-md-4 gameboard squares id="five""></div>
+          <div class="col-xs-4 col-md-4 gameboard squares id="six""></div>
+        <div class="bottom-row">
+          <div class="col-xs-4 col-md-4 gameboard squares id="seven""></div>
+          <div class="col-xs-4 col-md-4 gameboard squares id="eight""></div>
+          <div class="col-xs-4 col-md-4 gameboard squares id="nine""></div>
+        </div>
+        </div>
+        </div>
+      </div>
+    </div>
 
 
 
-        <!-- Modal ------------------------------------------------>
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-              </div>
-              <div class="modal-body">
-                ...
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-              </div>
+
+
+      <!-- Modal ------------------------------------------------>
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Sign Up</h4>
+            </div>
+            <div class="modal-body">
+              <form class="text" action="index.html" method="post">
+                <input type="text" name="name" value="">
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Sign up</button>
+              <button type="button" class="btn btn-primary">Sign In</button>
             </div>
           </div>
         </div>
+      </div>
 
-      </body>
+
+    <footer class="container-fluid">
+
+    </footer>
+
+    </body>
 </html>

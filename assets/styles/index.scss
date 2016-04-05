@@ -1,25 +1,48 @@
 $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
+@import "colors";
 
 body {
-  background-color: #BDBDBD;
-  position: relative;
+  margin: 0 auto;
+  min-height: 1000px;
+
 }
 
-gameboard {
-  display: block;
+.jumbotron {
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+.gameboard {
+  margin: 0 auto;
+}
+
+.top-row,
+.middle-row,
+.bottom-row {
+  max-width: 450px;
+  margin: auto;
 }
 
 .squares {
   margin: 0 auto;
   border: 2px solid black;
   background-color: #F5F5F5;
-  height: 100px;
-  max-width: 100px;
-  float: left;
+  width: 150px;
+  height:150px;
 }
 
+footer {
+  height: 100px;
+  margin-bottom: 0;
+}
 
+@media (max-width: 400px) {
+  .squares {
+    width: 100px;
+    height:100px;
+  }
+}
 /* make row funtions for squares in game board
 .gameboard{
   @include make-row();

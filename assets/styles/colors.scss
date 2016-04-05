@@ -1,0 +1,15 @@
+$headerFooter: #424242;
+$backgroundColor: #F5F5F5;
+
+
+body {
+  background-color: $backgroundColor;
+}
+
+.navbar {
+  background-color: $headerFooter;
+}
+
+footer {
+  background-color: $headerFooter;
+}
