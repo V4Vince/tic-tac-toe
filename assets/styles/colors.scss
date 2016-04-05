@@ -1,6 +1,7 @@
 $headerFooter: #424242;
 $backgroundColor: #F5F5F5; //gray
-$showSelectionRed: #E64A19;
+$red: #E64A19;
+$blue: #1976D2;
 $shadow: #888888;
 
 
@@ -22,6 +23,11 @@ footer {
   background-color: $headerFooter;
 }
 
-.showSelection {
-  background-color: $showSelectionRed;
+.playerX {
+  color: $red;
+}
+
+
+.playerO {
+  color: $blue;
 }

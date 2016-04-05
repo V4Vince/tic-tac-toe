@@ -5,26 +5,37 @@ let winCondition = [0, 1, 2], [3, 4, 5], [6, 7, 8],//rows
                    [1, 5, 9], [3, 5, 7];//across
 */
 
-$( document ).ready(function() {
-    console.log( 'ready!' );
+let currentSquare;
+let turns = 0;
+let currentPlayer = null;
+let playerX = 'X';
+let playerO = 'O';
 
-    let gameboard = [0, 1, 2, 3, 4, 5, 6, 7 ,8];
-    let currentPlayer = $('playerX');
+$('.gameboard').find('.squares').click(function(){
+  currentSquare = $(this);
 
-    $('.gameboard').find('.squares').hover(function(){
-      $(this).addClass('showSelection');
-    }, function(){
-      $(this).removeClass('showSelection');
-  });
-
-    $('.gameboard').find('.squares').click(function(){
-    $(this).text('X').addClass('playerX');
-  });
-
-
+  if (currentSquare.hasClass("empty")) {
+    if (turns % 2 === 0) {
+      currentPlayer = playerX;
+      currentSquare.removeClass("empty").text(currentPlayer).addClass("playerX");
+      turns++;
+    } else {
+      currentPlayer = playerO;
+      currentSquare.removeClass("empty").text(currentPlayer).addClass("playerO");
+      turns++;
+    }
+  }
 });
 
 
 
+/*
 
+$('.gameboard').find('.squares').hover(function(){
+  $(this).text(currentPlayer).addClass('player');
+}, function(){
+  $(this).text("").removeClass('player');
+});
+
+*/
 module.exports = true;
