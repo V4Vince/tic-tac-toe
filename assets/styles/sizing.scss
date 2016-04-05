@@ -1,0 +1,61 @@
+body {
+  margin: 0 auto;
+  min-height: 1000px;
+
+}
+
+h3{
+  text-align: center;
+}
+.jumbotron {
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+/*
+.gameboard {
+  margin: 0 auto;
+  max-width: 450px;
+}
+*/
+.top-row,
+.middle-row,
+.bottom-row {
+  margin: 0 auto;
+  display: block;
+  max-width: 400px;
+}
+
+
+.squares {
+  margin: 5px;
+  border: 2px solid black;
+  border-radius: 100px;
+  width: 100px;
+  height:100px;
+}
+
+footer {
+  height: 100px;
+  margin-bottom: 0;
+}
+
+@media (max-width: 400px) {
+  .squares {
+    width: 100px;
+    height:100px;
+  }
+  .top-row,
+  .middle-row,
+  .bottom-row {
+    margin: 0 auto;
+  }
+}
+/* make row funtions for squares in game board
+.gameboard{
+  @include make-row();
+  .squares {
+    @include make-xs-column(4);
+    @include make-md-column(4);
+  }
+}
+*/
