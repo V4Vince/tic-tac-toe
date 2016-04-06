@@ -15,7 +15,7 @@ let turns = 0;
 let currentPlayer = null;
 let playerX = 'X';
 let playerO = 'O';
-//let gameOver;
+let gameOver = false;
 let playerXCounter = 0;
 
 
@@ -32,16 +32,20 @@ const checkConditions = function(winCondition){
 //Displays Winner
 const displayWinner = function(){
   if (turns === 9) {
+    gameOver = true;
     console.log("Its a draw!");
   } else if (playerXCounter === 3) {
+    gameOver = true;
     console.log("Player X Wins");
     playerXCounter = 0;
   } else if (playerXCounter === -3) {
+    gameOver = true;
     console.log("Player O Wins");
     playerXCounter = 0;
   } else {
     playerXCounter = 0;
   }
+  return gameOver;
 };
 
 const getWinner = function(){
@@ -62,6 +66,14 @@ const getWinner = function(){
     displayWinner();
     checkConditions(diagonalTwo);
     displayWinner();
+  }
+};
+
+const newGame = function(){
+  if (gameOver === true) {
+    $('.squares').each(function(){
+      $(this).removeClass('playerX', 'playerO').text('').addClass('empty');
+    });
   }
 };
 
@@ -86,5 +98,10 @@ $('.gameboard').find('.squares').click(function(){
 
   getWinner();
 
+  newGame();
+
 });
+
+
+
 module.exports = true;
