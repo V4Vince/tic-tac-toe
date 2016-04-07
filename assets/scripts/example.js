@@ -1,5 +1,7 @@
 'use strict';
 
+const gameData = require('./auth/game-data');
+
 let topRow = [$("#one"), $("#two"), $("#three")];
 let middleRow = [$("#four"), $("#five"), $("#six")];
 let bottomRow = [$("#seven"), $("#eight"), $("#nine")];
@@ -102,6 +104,9 @@ $('.gameboard').find('.squares').click(function(event){
       turns++;
     }//else
   }//if
+
+  gameData.gameIndex = currentSquare.attr('data-id');
+  gameData.gameValue = currentSquare.text();
 
   getWinner();
 /*display winner

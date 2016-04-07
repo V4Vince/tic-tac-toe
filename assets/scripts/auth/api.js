@@ -1,6 +1,7 @@
 'use strict';
 //test to see if the code works
 const app = require('../app-data');
+const gameData = require('./game-data');
 
 const signUp = (success, failure, data) => {
   $.ajax({
@@ -33,17 +34,37 @@ const signOut = (success, failure) => {
 };
 
 const create = (success, failure) => {
-  console.log(app.user.token);
+  console.log(app.data);
   $.ajax({
     method: 'POST',
-    url: app.api + '/games',
+    url: app.api + '/games/',
     headers: {
-      Authorization: 'Token token=' + app.user.token
+      Authorization: 'Token token=' + app.user.token,
     },
   }).done(success)
     .fail(failure);
 };
 
+const save = (success, failure) => {
+  $.ajax({
+    method: 'PATCH',
+    url: app.api + '/games/' + gameData.gameId,
+    data: {
+      "game": {
+        "cell": {
+          "index": gameData.gameIndex,
+          "value": gameData.gameValue
+        },
+      }
+    },
+    headers: {
+      Authorization: 'Token token=' + app.user.token
+    }
+  }).done(success)
+    .fail(failure);
+};
+
+/*
 const findGame = (success, failure, data) => {
   $.ajax({
     method: 'GET',
@@ -52,6 +73,7 @@ const findGame = (success, failure, data) => {
   }).done(success)
     .fail(failure);
 };
+*/
 
 /*
 
@@ -71,5 +93,6 @@ module.exports = {
   signIn,
   signOut,
   create,
-  findGame,
+  save,
+//  findGame,
 };
