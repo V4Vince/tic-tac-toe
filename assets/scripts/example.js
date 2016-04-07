@@ -22,19 +22,16 @@ let playerXCounter = 0;
 const checkConditions = function(winCondition){
   for (let i = 0; i < winCondition.length; i++) {
     if (winCondition[i].hasClass("playerX")) {
-      console.log(playerXCounter++);
+      playerXCounter++;
     } else if(winCondition[i].hasClass("playerO")){
-      console.log(playerXCounter--);
+      playerXCounter--;
     }
   }//for
 };//checkWinner
 
 //Displays Winner
 const displayWinner = function(){
-  if (turns === 9) {
-    gameOver = true;
-    console.log("Its a draw!");
-  } else if (playerXCounter === 3) {
+    if (playerXCounter === 3) {
     gameOver = true;
     console.log("Player X Wins");
     playerXCounter = 0;
@@ -49,7 +46,7 @@ const displayWinner = function(){
 };
 
 const getWinner = function(){
-  if (turns >= 4) {
+  if (turns >= 4 && turns <= 9) {
     checkConditions(topRow);
     displayWinner();
     checkConditions(middleRow);
@@ -66,6 +63,8 @@ const getWinner = function(){
     displayWinner();
     checkConditions(diagonalTwo);
     displayWinner();
+  } else if (turns === 9){
+    console.log("Cat's Game!");
   }
 };
 
@@ -77,29 +76,39 @@ const newGame = function(){
   }
 };
 
+let player1 = $('.players').find('.playerX');
+let player2 = $('.players').find('.playerO');
+
 //MAIN BLOCK ------------------------------------------------------------------
 //Listens for clicks on squares
 $('.gameboard').find('.squares').click(function(event){
   event.preventDefault;
   currentSquare = $(this);
-
+  player1.addClass('playerXindic');
 //if the clicked square is has 'empty' class and the turn is even, then place 'playerX' class
   if (currentSquare.hasClass("empty")) {
     if (turns % 2 === 0) {
       currentPlayer = playerX;
       currentSquare.removeClass("empty").text(currentPlayer).addClass("playerX");
+      player1.removeClass('playerXindic');
+      player2.addClass('playerOindic');
       turns++;
     //else place a 'playerO' class
     } else {
       currentPlayer = playerO;
       currentSquare.removeClass("empty").text(currentPlayer).addClass("playerO");
+      player2.removeClass('playerOindic');
+      player1.addClass('playerXindic');
       turns++;
     }//else
   }//if
 
   getWinner();
-  newGame();
-
+/*display winner
+  if (gameOver === true) {
+    $('.players').
+  }
+*/
 });
 
 

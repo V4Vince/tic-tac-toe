@@ -12,6 +12,16 @@ const signOutSuccess = () => {
   console.log(app);
 };
 
+const createSuccess = () => {
+  app.user = null;
+  console.log(app);
+};
+
+const findSuccess = () => {
+  app.user = null;
+  console.log(app);
+};
+
 const success = (data) => {
   console.log(data);
 };
@@ -25,4 +35,5 @@ module.exports = {
   success,
   signInSuccess,
   signOutSuccess,
+  createSuccess,
 };

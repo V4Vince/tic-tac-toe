@@ -32,8 +32,44 @@ const signOut = (success, failure) => {
     .fail(failure);
 };
 
+const create = (success, failure) => {
+  console.log(app.user.token);
+  $.ajax({
+    method: 'POST',
+    url: app.api + '/games',
+    headers: {
+      Authorization: 'Token token=' + app.user.token
+    },
+  }).done(success)
+    .fail(failure);
+};
+
+const findGame = (success, failure, data) => {
+  $.ajax({
+    method: 'GET',
+    url: app.api + '/games/' + app.user.id,
+    data,
+  }).done(success)
+    .fail(failure);
+};
+
+/*
+
+const updateGames = (success, failure, data) => {
+  $.ajax({
+    method: 'PATCH',
+    url: app.api + '/games/' + app.user.id,
+    data:
+
+  }).done(success)
+    .fail(failure);
+};
+
+*/
 module.exports = {
   signUp,
   signIn,
   signOut,
+  create,
+  findGame,
 };

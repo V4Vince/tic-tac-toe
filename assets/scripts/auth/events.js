@@ -20,6 +20,14 @@ const addHandlers = () => { //addHandlers function will target #sign-up and list
     event.preventDefault();
     authApi.signOut(authUi.signOutSuccess, authUi.failure);
   });
+  $('#new-game').on('click', function (event) {
+    event.preventDefault();
+    authApi.create(authUi.createSuccess, authUi.failure);
+  });
+  $('#find-game').on('click', function (event) {
+    event.preventDefault();
+    authApi.findGame(authUi.findSuccess, authUi.failure);
+  });
 
 };
 

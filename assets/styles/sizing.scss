@@ -9,16 +9,14 @@ h3{
 }
 .jumbotron {
   padding-top: 100px;
-  padding-bottom: 100px;
+  padding-bottom: 25px;
   margin: 0 auto;
 }
 
-/*
-.gameboard {
-  margin: 0 auto;
-  max-width: 450px;
+.players{
+  padding-top: 25px;
 }
-*/
+
 .top-row,
 .middle-row,
 .bottom-row {
@@ -39,6 +37,7 @@ h3{
 footer {
   height: 100px;
   bottom: 0;
+  margin-top: 100px;
 }
 
 @media (max-width: 400px) {
