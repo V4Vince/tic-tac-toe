@@ -1,6 +1,7 @@
 'use strict';
 
 const gameData = require('./auth/game-data');
+const events = require('./auth/events');
 
 let topRow = [$("#one"), $("#two"), $("#three")];
 let middleRow = [$("#four"), $("#five"), $("#six")];
@@ -19,7 +20,7 @@ let playerX = 'X';
 let playerO = 'O';
 let gameOver = false;
 let playerXCounter = 0;
-
+let winner = '';
 
 const checkConditions = function(winCondition){
   for (let i = 0; i < winCondition.length; i++) {
@@ -47,6 +48,16 @@ const displayWinner = function(){
   return gameOver;
 };
 
+const showWinner = function (){
+  if (playerXCounter === 3) {
+    winner = 'X Wins';
+  } else if (playerXCounter === -3){
+    winner = 'O Wins';
+  } else {
+    winner = 'Cat\'s Game';
+  }
+};
+
 const getWinner = function(){
   if (turns >= 4 && turns <= 9) {
     checkConditions(topRow);
@@ -66,9 +77,13 @@ const getWinner = function(){
     checkConditions(diagonalTwo);
     displayWinner();
   } else if (turns === 9){
-    console.log("Cat's Game!");
+    $('.display-winner').find('h2').text(winner);
+    showWinner();
   }
 };
+
+let player1 = $('.players').find('.playerX');
+let player2 = $('.players').find('.playerO');
 
 const newGame = function(){
     $('.squares').each(function(){
@@ -80,9 +95,6 @@ const newGame = function(){
     });
 
 };
-
-let player1 = $('.players').find('.playerX');
-let player2 = $('.players').find('.playerO');
 
 //MAIN BLOCK ------------------------------------------------------------------
 //Listens for clicks on squares
@@ -110,13 +122,9 @@ $('.gameboard').find('.squares').click(function(event){
 
   gameData.gameIndex = currentSquare.attr('data-id');
   gameData.gameValue = currentSquare.text();
-
+  events.patchGame();
   getWinner();
-/*display winner
-  if (gameOver === true) {
-    $('.players').
-  }
-*/
+
 });
 
 $('#new-game').on('click', function (event) {

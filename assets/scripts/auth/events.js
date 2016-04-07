@@ -30,11 +30,13 @@ const addHandlers = () => { //addHandlers function will target #sign-up and list
   });
 
 };
+const patchGame = function(){
+    authApi.save(authUi.success, authUi.failure);
 
-
-
+};
 
 
 module.exports = {
   addHandlers,
+  patchGame,
 };

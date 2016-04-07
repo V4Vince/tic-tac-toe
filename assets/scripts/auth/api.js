@@ -33,6 +33,18 @@ const signOut = (success, failure) => {
     .fail(failure);
 };
 
+const changePassword = (success, failure) => {
+  //if(!app.user) <-- bad
+  $.ajax({
+    method: 'PATCH',
+    url: app.api + '/change-password/' + app.user.id,
+    headers: {
+      Authorization: 'Token token=' + app.user.token,
+    },
+  }).done(success)
+    .fail(failure);
+};
+
 const create = (success, failure) => {
   console.log(app.data);
   $.ajax({
@@ -46,9 +58,10 @@ const create = (success, failure) => {
 };
 
 const save = (success, failure) => {
+  console.log(gameData.gameIndex);
   $.ajax({
     method: 'PATCH',
-    url: app.api + '/games/' + gameData.gameId,
+    url: app.api + '/games/' + app.game.id,
     data: {
       "game": {
         "cell": {
@@ -94,5 +107,6 @@ module.exports = {
   signOut,
   create,
   save,
+  app,
 //  findGame,
 };

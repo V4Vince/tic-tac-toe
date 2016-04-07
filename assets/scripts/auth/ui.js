@@ -24,6 +24,8 @@ const findSuccess = () => {
 };
 */
 const success = (data) => {
+  console.log("testing" + gameData.gameIndex);
+  console.log("testing" + gameData.gameValue);
   console.log(data);
 };
 
@@ -38,4 +40,5 @@ module.exports = {
   signOutSuccess,
   createSuccess,
   game,
+  app,
 };
