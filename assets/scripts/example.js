@@ -20,7 +20,7 @@ let playerXCounter = 0;
 
 
 const checkConditions = function(winCondition){
-  for (var i = 0; i < winCondition.length; i++) {
+  for (let i = 0; i < winCondition.length; i++) {
     if (winCondition[i].hasClass("playerX")) {
       console.log(playerXCounter++);
     } else if(winCondition[i].hasClass("playerO")){
@@ -79,7 +79,8 @@ const newGame = function(){
 
 //MAIN BLOCK ------------------------------------------------------------------
 //Listens for clicks on squares
-$('.gameboard').find('.squares').click(function(){
+$('.gameboard').find('.squares').click(function(event){
+  event.preventDefault;
   currentSquare = $(this);
 
 //if the clicked square is has 'empty' class and the turn is even, then place 'playerX' class
@@ -97,7 +98,6 @@ $('.gameboard').find('.squares').click(function(){
   }//if
 
   getWinner();
-
   newGame();
 
 });
