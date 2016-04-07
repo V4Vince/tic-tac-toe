@@ -61,7 +61,7 @@ const save = (success, failure) => {
   console.log(gameData.gameIndex);
   $.ajax({
     method: 'PATCH',
-    url: app.api + '/games/' + app.game.id,
+    url: app.api + '/games/' + gameData.gameId,
     data: {
       "game": {
         "cell": {
