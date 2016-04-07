@@ -71,11 +71,14 @@ const getWinner = function(){
 };
 
 const newGame = function(){
-  if (gameOver === true) {
     $('.squares').each(function(){
-      $(this).removeClass('playerX', 'playerO').text('').addClass('empty');
+      $(this).removeClass('playerX').text('').addClass('empty');
+      $(this).removeClass('playerO').text('').addClass('empty');
+      player2.removeClass('playerOindic');
+      player1.addClass('playerXindic');
+      turns = 0;
     });
-  }
+
 };
 
 let player1 = $('.players').find('.playerX');
@@ -83,10 +86,10 @@ let player2 = $('.players').find('.playerO');
 
 //MAIN BLOCK ------------------------------------------------------------------
 //Listens for clicks on squares
+player1.addClass('playerXindic');
 $('.gameboard').find('.squares').click(function(event){
   event.preventDefault;
   currentSquare = $(this);
-  player1.addClass('playerXindic');
 //if the clicked square is has 'empty' class and the turn is even, then place 'playerX' class
   if (currentSquare.hasClass("empty")) {
     if (turns % 2 === 0) {
@@ -116,6 +119,10 @@ $('.gameboard').find('.squares').click(function(event){
 */
 });
 
+$('#new-game').on('click', function (event) {
+  event.preventDefault();
+  newGame();
+});
 
 
 module.exports = true;
