@@ -36,11 +36,15 @@ const checkConditions = function(winCondition){
 const displayWinner = function(){
     if (playerXCounter === 3) {
     gameOver = true;
-    console.log("Player X Wins");
+    //console.log("Player X Wins");
+    $('.gameboard').hide();
+    $('.players').find('.playerName').hide();
     playerXCounter = 0;
   } else if (playerXCounter === -3) {
     gameOver = true;
-    console.log("Player O Wins");
+    //console.log("Player O Wins");
+    $('.gameboard').hide();
+    $('.players').find('.playerName').hide();
     playerXCounter = 0;
   } else {
     playerXCounter = 0;
@@ -77,8 +81,7 @@ const getWinner = function(){
     checkConditions(diagonalTwo);
     displayWinner();
   } else if (turns === 9){
-    $('.display-winner').find('h2').text(winner);
-    showWinner();
+    $('.gameboard').hide();
   }
 };
 
@@ -129,6 +132,8 @@ $('.gameboard').find('.squares').click(function(event){
 
 $('#new-game').on('click', function (event) {
   event.preventDefault();
+  $('.gameboard').show();
+  $('.players').find('.playerName').show();
   newGame();
 });
 
