@@ -39,12 +39,14 @@ const displayWinner = function(){
     //console.log("Player X Wins");
     $('.gameboard').hide();
     $('.players').find('.playerName').hide();
+    $('.notify').text("Player-X Wins!!!").addClass("bigLetters");
     playerXCounter = 0;
   } else if (playerXCounter === -3) {
     gameOver = true;
     //console.log("Player O Wins");
     $('.gameboard').hide();
     $('.players').find('.playerName').hide();
+    $('.notify').text("Player-O Wins!!!").addClass("bigLetters");
     playerXCounter = 0;
   } else {
     playerXCounter = 0;
@@ -134,6 +136,7 @@ $('#new-game').on('click', function (event) {
   event.preventDefault();
   $('.gameboard').show();
   $('.players').find('.playerName').show();
+  $('.notify').empty();
   newGame();
 });
 
