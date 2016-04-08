@@ -17,12 +17,7 @@ const createSuccess = (data) => {
   game.gameId = data.game.id;
   console.log(data);
 };
-/*
-const findSuccess = () => {
-  app.user = null;
-  console.log(app);
-};
-*/
+
 const success = (data) => {
   console.log(data);
 };

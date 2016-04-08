@@ -3,6 +3,7 @@
 const gameData = require('./auth/game-data');
 const events = require('./auth/events');
 
+//win conditions
 let topRow = [$("#one"), $("#two"), $("#three")];
 let middleRow = [$("#four"), $("#five"), $("#six")];
 let bottomRow = [$("#seven"), $("#eight"), $("#nine")];
@@ -12,7 +13,7 @@ let thirdCol = [$("#three"), $("#six"), $("#nine")];
 let diagonalOne = [$("#one"), $("#five"), $("#nine")];
 let diagonalTwo = [$("#three"), $("#five"), $("#seven")];
 
-
+//globals
 let currentSquare;
 let turns = 0;
 let currentPlayer = null;
@@ -20,8 +21,8 @@ let playerX = 'X';
 let playerO = 'O';
 let gameOver = false;
 let playerXCounter = 0;
-let winner = '';
 
+//checks all 8 win conditions and increments playercounter for every X and decrements for every O
 const checkConditions = function(winCondition){
   for (let i = 0; i < winCondition.length; i++) {
     if (winCondition[i].hasClass("playerX")) {
@@ -29,43 +30,43 @@ const checkConditions = function(winCondition){
     } else if(winCondition[i].hasClass("playerO")){
       playerXCounter--;
     }
-  }//for
-};//checkWinner
+  }
+};
 
-//Displays Winner
+//hides the board and the player indicator
+const hideErthang = function (){
+  $('.gameboard').hide();
+  $('.players').find('.playerName').hide();
+};
+
+//shows the board and player indicator
+const showErthang = function (){
+  $('.gameboard').show();
+  $('.players').find('.playerName').show();
+  $('.notify').empty();
+};
+
+//When the player counter reaches either 3 or -3, calls hideErthang and display winner
+//resets player counter
 const displayWinner = function(){
     if (playerXCounter === 3) {
     gameOver = true;
-    //console.log("Player X Wins");
-    $('.gameboard').hide();
-    $('.players').find('.playerName').hide();
+    hideErthang();
     $('.notify').text("Player-X Wins!!!").addClass("bigLetters");
     playerXCounter = 0;
   } else if (playerXCounter === -3) {
     gameOver = true;
-    //console.log("Player O Wins");
-    $('.gameboard').hide();
-    $('.players').find('.playerName').hide();
+    hideErthang();
     $('.notify').text("Player-O Wins!!!").addClass("bigLetters");
     playerXCounter = 0;
   } else {
     playerXCounter = 0;
   }
-  return gameOver;
 };
 
-const showWinner = function (){
-  if (playerXCounter === 3) {
-    winner = 'X Wins';
-  } else if (playerXCounter === -3){
-    winner = 'O Wins';
-  } else {
-    winner = 'Cat\'s Game';
-  }
-};
-
+//for turns between 4 and 9, check the conditons and tell me who won
 const getWinner = function(){
-  if (turns >= 4 && turns <= 9) {
+  if (turns >= 4 && gameOver === false) {
     checkConditions(topRow);
     displayWinner();
     checkConditions(middleRow);
@@ -82,15 +83,15 @@ const getWinner = function(){
     displayWinner();
     checkConditions(diagonalTwo);
     displayWinner();
-  } else if (turns === 9){
-    $('.gameboard').hide();
   }
 };
 
+//inserts each players HTML into their varibles
 let player1 = $('.players').find('.playerX');
 let player2 = $('.players').find('.playerO');
 
-const newGame = function(){
+//resets the board
+const cleanSlate = function(){
     $('.squares').each(function(){
       $(this).removeClass('playerX').text('').addClass('empty');
       $(this).removeClass('playerO').text('').addClass('empty');
@@ -98,16 +99,16 @@ const newGame = function(){
       player1.addClass('playerXindic');
       turns = 0;
     });
-
 };
 
 //MAIN BLOCK ------------------------------------------------------------------
+
 //Listens for clicks on squares
 player1.addClass('playerXindic');
 $('.gameboard').find('.squares').click(function(event){
   event.preventDefault;
   currentSquare = $(this);
-//if the clicked square is has 'empty' class and the turn is even, then place 'playerX' class
+//if the clicked square is has 'empty' class and the turn is even, then insert 'playerX' class
   if (currentSquare.hasClass("empty")) {
     if (turns % 2 === 0) {
       currentPlayer = playerX;
@@ -122,22 +123,31 @@ $('.gameboard').find('.squares').click(function(event){
       player2.removeClass('playerOindic');
       player1.addClass('playerXindic');
       turns++;
-    }//else
-  }//if
+    }
+  }
 
+//grab the currentsquare's index and value
   gameData.gameIndex = currentSquare.attr('data-id');
   gameData.gameValue = currentSquare.text();
+//then send the data to the server
   events.patchGame();
+
+//tell me who won
   getWinner();
 
+  if (gameOver === false && turns === 9) {
+    hideErthang();
+    $('.notify').text("Cat\'s Game").addClass("bigLetters");
+    playerXCounter = 0;
+  }
 });
 
+// When new game button is clicked, set the board conidtions to original
 $('#new-game').on('click', function (event) {
   event.preventDefault();
-  $('.gameboard').show();
-  $('.players').find('.playerName').show();
-  $('.notify').empty();
-  newGame();
+  showErthang();
+  cleanSlate();
+  gameOver = false;
 });
 
 

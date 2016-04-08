@@ -1,5 +1,6 @@
 'use strict';
-//test to see if the code works
+
+
 const app = require('../app-data');
 const gameData = require('./game-data');
 
@@ -22,7 +23,6 @@ const signIn = (success, failure, data) => {
 };
 
 const signOut = (success, failure) => {
-  //if(!app.user) <-- bad
   $.ajax({
     method: 'DELETE',
     url: app.api + '/sign-out/' + app.user.id,
@@ -34,7 +34,6 @@ const signOut = (success, failure) => {
 };
 
 const changePassword = (success, failure) => {
-  //if(!app.user) <-- bad
   $.ajax({
     method: 'PATCH',
     url: app.api + '/change-password/' + app.user.id,
@@ -77,30 +76,6 @@ const save = (success, failure) => {
     .fail(failure);
 };
 
-/*
-const findGame = (success, failure, data) => {
-  $.ajax({
-    method: 'GET',
-    url: app.api + '/games/' + app.user.id,
-    data,
-  }).done(success)
-    .fail(failure);
-};
-*/
-
-/*
-
-const updateGames = (success, failure, data) => {
-  $.ajax({
-    method: 'PATCH',
-    url: app.api + '/games/' + app.user.id,
-    data:
-
-  }).done(success)
-    .fail(failure);
-};
-
-*/
 module.exports = {
   signUp,
   signIn,
@@ -108,5 +83,4 @@ module.exports = {
   create,
   save,
   app,
-//  findGame,
 };
