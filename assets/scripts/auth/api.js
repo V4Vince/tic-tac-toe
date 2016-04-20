@@ -33,10 +33,28 @@ const signOut = (success, failure) => {
     .fail(failure);
 };
 
-const changePassword = (success, failure) => {
+const grabGame = (success, failure) => {
+  $.ajax({
+    method: 'GET',
+    url: app.api + '/games/' ,
+    headers: {
+      Authorization: 'Token token=' + app.user.token,
+    },
+  }).done(success)
+    .fail(failure);
+};
+
+const changePassword = (success, failure, data) => {
+  console.log(app.user.token);
   $.ajax({
     method: 'PATCH',
     url: app.api + '/change-password/' + app.user.id,
+    data: {
+        "passwords": {
+          "old": app.currPass,
+          "new": data.credentials.password
+      }
+    },
     headers: {
       Authorization: 'Token token=' + app.user.token,
     },
@@ -83,4 +101,6 @@ module.exports = {
   create,
   save,
   app,
+  changePassword,
+  grabGame,
 };

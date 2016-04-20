@@ -8,6 +8,12 @@ const signInSuccess = (data) => {
   console.log(app);
 };
 
+const changePasswordSuccess = (data) => {
+  console.log("trying to change password");
+  app.user = data.user;
+  console.log("Change password successful!");
+};
+
 const signOutSuccess = () => {
   app.user = null;
   console.log(app);
@@ -25,10 +31,13 @@ const success = (data) => {
 const failure = (error) => {
   console.error(error);
 };
+// run grunt build
+//
 
 module.exports = {
   failure,
   success,
+  changePasswordSuccess,
   signInSuccess,
   signOutSuccess,
   createSuccess,

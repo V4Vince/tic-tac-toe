@@ -10,9 +10,15 @@ body {
   background-color: $backgroundColor;
 }
 
+//background to board and players
+// .main, .players {
+//   background-color: $blue;
+// }
+
 .navbar {
   background-color: $headerFooter;
 }
+
 
 .squares {
   background-color: $backgroundColor;
@@ -26,7 +32,6 @@ footer {
 .playerX {
   color: $red;
 }
-
 
 .playerO {
   color: $blue;

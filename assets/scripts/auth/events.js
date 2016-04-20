@@ -1,7 +1,7 @@
 'use strict';
 
 const getFormFields = require('../../../lib/get-form-fields');
-
+const app = require('../app-data');
 const authApi = require('./api');
 const authUi = require('./ui');
 
@@ -15,6 +15,7 @@ const addHandlers = () => {
 
   $('#sign-in').on('submit', function (event) {
     let data = getFormFields(this);
+    app.currPass = data.credentials.password;
     event.preventDefault();
     authApi.signIn(authUi.signInSuccess, authUi.failure, data);
   });
@@ -29,9 +30,19 @@ const addHandlers = () => {
     authApi.create(authUi.createSuccess, authUi.failure);
   });
 
+  $('#change-password').on('submit', function (event) {
+    event.preventDefault();
+    let data = getFormFields(this);
+    authApi.changePassword(authUi.changePasswordSuccess, authUi.failure, data);
+  });
+
+  $('#grab-game').on('submit', function (event){
+    event.preventDefault();
+    authApi.grabGame(authUi.success, authUi.failure);
+  });
 };
 
-const patchGame = function(){
+const patchGame = function(){ 
     authApi.save(authUi.success, authUi.failure);
 };
 
