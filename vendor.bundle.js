@@ -10316,7 +10316,7 @@
 	    url: app.api + '/change-password/' + app.user.id,
 	    data: {
 	      "passwords": {
-	        "old": app.currPass,
+	        "old": data.credentials.old_password,
 	        "new": data.credentials.password
 	      }
 	    },
@@ -10382,7 +10382,7 @@
 	  console.log(app);
 	};
 
-	var changePasswordSuccess = function changePasswordSuccess(data) {
+	var changePasswordSuccess = function changePasswordSuccess() {
 	  console.log("trying to change password");
 	  console.log("Change password successful!");
 	};
@@ -10409,8 +10409,6 @@
 	var failure = function failure(error) {
 	  console.error(error);
 	};
-	// run grunt build
-	//
 
 	module.exports = {
 	  failure: failure,

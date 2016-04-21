@@ -51,7 +51,7 @@ const changePassword = (success, failure, data) => {
     url: app.api + '/change-password/' + app.user.id,
     data: {
         "passwords": {
-          "old": app.currPass,
+          "old": data.credentials.old_password,
           "new": data.credentials.password
       }
     },
