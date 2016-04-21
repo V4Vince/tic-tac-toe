@@ -28,6 +28,11 @@ const success = (data) => {
   console.log(data);
 };
 
+const grabSuccess = (data) => {
+  $('.grab-game').text(data.games.length);
+  console.log(data);
+};
+
 const failure = (error) => {
   console.error(error);
 };
@@ -42,5 +47,6 @@ module.exports = {
   signOutSuccess,
   createSuccess,
   game,
+  grabSuccess,
   app,
 };

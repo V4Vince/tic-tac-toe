@@ -10120,11 +10120,13 @@
 	var gameId = void 0;
 	var gameIndex = 0;
 	var gameValue = "";
+	var gameCells = void 0;
 
 	module.exports = {
 	  gameId: gameId,
 	  gameIndex: gameIndex,
-	  gameValue: gameValue
+	  gameValue: gameValue,
+	  gameCells: gameCells
 	};
 
 /***/ },
@@ -10134,9 +10136,10 @@
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
 
 	var getFormFields = __webpack_require__(6);
-
-	var authApi = __webpack_require__(7);
+	var app = __webpack_require__(7);
+	var authApi = __webpack_require__(8);
 	var authUi = __webpack_require__(9);
+	// const require = require('./game-data')
 
 	var addHandlers = function addHandlers() {
 
@@ -10148,6 +10151,7 @@
 
 	  $('#sign-in').on('submit', function (event) {
 	    var data = getFormFields(this);
+	    app.currPass = data.credentials.password;
 	    event.preventDefault();
 	    authApi.signIn(authUi.signInSuccess, authUi.failure, data);
 	  });
@@ -10160,6 +10164,17 @@
 	  $('#new-game').on('click', function (event) {
 	    event.preventDefault();
 	    authApi.create(authUi.createSuccess, authUi.failure);
+	  });
+
+	  $('#change-password').on('submit', function (event) {
+	    event.preventDefault();
+	    var data = getFormFields(this);
+	    authApi.changePassword(authUi.changePasswordSuccess, authUi.failure, data);
+	  });
+
+	  $('#grab-game').on('submit', function (event) {
+	    event.preventDefault();
+	    authApi.grabGame(authUi.grabSuccess, authUi.failure);
 	  });
 	};
 
@@ -10240,11 +10255,22 @@
 
 /***/ },
 /* 7 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	var app = {
+	  api: 'http://tic-tac-toe.wdibos.com'
+	};
+	module.exports = app;
+
+/***/ },
+/* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
 
-	var app = __webpack_require__(8);
+	var app = __webpack_require__(7);
 	var gameData = __webpack_require__(4);
 
 	var signUp = function signUp(success, failure, data) {
@@ -10273,10 +10299,27 @@
 	  }).done(success).fail(failure);
 	};
 
-	var changePassword = function changePassword(success, failure) {
+	var grabGame = function grabGame(success, failure) {
+	  $.ajax({
+	    method: 'GET',
+	    url: app.api + '/games/',
+	    headers: {
+	      Authorization: 'Token token=' + app.user.token
+	    }
+	  }).done(success).fail(failure);
+	};
+
+	var changePassword = function changePassword(success, failure, data) {
+	  console.log(app.user.token);
 	  $.ajax({
 	    method: 'PATCH',
 	    url: app.api + '/change-password/' + app.user.id,
+	    data: {
+	      "passwords": {
+	        "old": app.currPass,
+	        "new": data.credentials.password
+	      }
+	    },
 	    headers: {
 	      Authorization: 'Token token=' + app.user.token
 	    }
@@ -10319,34 +10362,30 @@
 	  signOut: signOut,
 	  create: create,
 	  save: save,
-	  app: app
+	  app: app,
+	  changePassword: changePassword,
+	  grabGame: grabGame
 	};
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
-
-/***/ },
-/* 8 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	var app = {
-	  api: 'http://tic-tac-toe.wdibos.com'
-	};
-
-	module.exports = app;
 
 /***/ },
 /* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
 
-	var app = __webpack_require__(8);
+	var app = __webpack_require__(7);
 	var game = __webpack_require__(4);
 
 	var signInSuccess = function signInSuccess(data) {
 	  app.user = data.user;
 	  console.log(app);
+	};
+
+	var changePasswordSuccess = function changePasswordSuccess(data) {
+	  console.log("trying to change password");
+	  app.user = data.user;
+	  console.log("Change password successful!");
 	};
 
 	var signOutSuccess = function signOutSuccess() {
@@ -10363,19 +10402,29 @@
 	  console.log(data);
 	};
 
+	var grabSuccess = function grabSuccess(data) {
+	  $('.grab-game').text(data.games.length);
+	  console.log(data);
+	};
+
 	var failure = function failure(error) {
 	  console.error(error);
 	};
+	// run grunt build
+	//
 
 	module.exports = {
 	  failure: failure,
 	  success: success,
+	  changePasswordSuccess: changePasswordSuccess,
 	  signInSuccess: signInSuccess,
 	  signOutSuccess: signOutSuccess,
 	  createSuccess: createSuccess,
 	  game: game,
+	  grabSuccess: grabSuccess,
 	  app: app
 	};
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ },
 /* 10 */,
