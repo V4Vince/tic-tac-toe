@@ -10384,7 +10384,6 @@
 
 	var changePasswordSuccess = function changePasswordSuccess(data) {
 	  console.log("trying to change password");
-	  app.user = data.user;
 	  console.log("Change password successful!");
 	};
 
